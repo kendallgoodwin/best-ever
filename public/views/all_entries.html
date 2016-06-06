@@ -1,5 +1,5 @@
 <div class="container">
-	<div class="well" ng-repeat="entry in entries | {title:search} track by entry._id">
+	<div class="well" ng-repeat="entry in entries track by entry._id">
 	  <h1>{{entry.title}}</h1>
 	  <h2>{{entry.artist}}</h2>
 	</div>

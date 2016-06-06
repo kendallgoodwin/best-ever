@@ -30,14 +30,18 @@ app.use(function (err, req, res, next) {
 
 app.use('/api/entries', require('./controllers/entries'));
 app.use('/api/users', require('./controllers/users'));
-// // create a new user called Chris
-// var kendall = new User({
-//   username: 'Kendall',
-// });
 
-// app.get('/', function(req, res) {
-//   res.send(kendall.sayHello());
-// });
+
+var User = require('./models/user');
+app.post('/api/auth', function(req, res){
+	User.findOne({email:req.body.email}, function(err, user){
+		user.authenticated(req.body.password, function(err, loggedUser){
+			if(err||!loggedUser){}
+				var token = jwt.sign({username:loggedUser.username}, secret)
+			res.json({token:token})
+		})
+	})
+})
 
 app.get('/*', function(req, res) {
   res.sendFile(path.join(__dirname, 'public/index.html'));

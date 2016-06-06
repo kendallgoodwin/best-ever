@@ -30,8 +30,31 @@ angular.module('BestEverCtrls', ['BestEverServices'])
   $state.go('signup');
 }])
 
-.controller('LoginCtrl', ['$scope', '$state', '$stateParams', function($scope, $state, $stateParams) {
+.controller('LoginCtrl', ['$scope', '$http', '$location', '$state', '$stateParams', 'Auth', 
+	function($scope, $http, $location, $state, $stateParams, Auth) {
+  $scope.user = {
+    email: '',
+    password: ''
+  };
+  $scope.userLogin = function() {
+    $http.post('/api/auth', $scope.user).then(function success(res) {
+      Auth.saveToken(res.data.token);
+      console.log('Token:', res.data.token)
+      $location.path('/');
+    }, function error(res) {
+      console.log(res);
+    });
+  }
+
 	$state.go('login');
+}])
+
+.controller('NavCtrl', ['$scope', 'Auth', function($scope, Auth) {
+  $scope.Auth = Auth;
+  $scope.logout = function() {
+    Auth.removeToken();
+    console.log('My token:', Auth.getToken());
+  }
 }])
 
 .controller('DashboardCtrl', ['$scope', '$state', '$stateParams', function($scope, $state, $stateParams) {
