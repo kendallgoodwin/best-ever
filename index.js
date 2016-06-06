@@ -1,10 +1,11 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var path = require('path');
+var expressJWT = require('express-jwt');
+var jwt = require('jsonwebtoken');
 var app = express();
 
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(express.static(__dirname + '/public'));
+var secret = "mysupersecretpassword";
 
 // Mongoose stuff
 var mongoose = require('mongoose');
@@ -13,8 +14,22 @@ var Entry = require('./models/entry');
 // mongoose.connect('mongodb://localhost/Entry');
 mongoose.connect('mongodb://localhost/best')
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.static(__dirname + '/public'));
 
+app.use('/api/entries', expressJWT({secret: secret}));
+app.use('/api/users', expressJWT({secret: secret})
+.unless({path: ['/api/users'], method: 'post'}));
 
+app.use(function (err, req, res, next) {
+  if (err.name === 'UnauthorizedError') {
+    res.status(401).send({message: 'You need an authorization token to view this information.'})
+  }
+});
+
+app.use('/api/entries', require('./controllers/entries'));
+app.use('/api/users', require('./controllers/users'));
 // // create a new user called Chris
 // var kendall = new User({
 //   username: 'Kendall',

@@ -12,12 +12,20 @@ angular.module('BestEverCtrls', ['BestEverServices'])
 	$state.go('landing');
 }])
 
-.controller('SignUpCtrl', ['$scope', '$state', '$stateParams', function($scope, $state, $stateParams) {
-  // User.get({id: $stateParams.id}, function success(data) {
-  //   $scope.film = data;
-  // }, function error(data) {
-  //   console.log(data);
-  // });
+.controller('SignUpCtrl', ['$scope', '$http', '$location', '$state', '$stateParams', 
+	function($scope, $http, $location, $state, $stateParams) {
+	$scope.user = {
+	    username: '',
+	    email: '',
+	    password: ''
+	  };
+	  $scope.userSignup = function() {
+	    $http.post('/api/users', $scope.user).then(function success(res) {
+	      $location.path('/');
+	    }, function error(res) {
+	      console.log(res);
+	    });
+	  }
 
   $state.go('signup');
 }])
