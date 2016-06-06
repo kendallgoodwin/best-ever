@@ -10,7 +10,8 @@ app.use(express.static(__dirname + '/public'));
 var mongoose = require('mongoose');
 var User = require('./models/user');
 var Entry = require('./models/entry');
-mongoose.connect('mongodb://localhost/best');
+// mongoose.connect('mongodb://localhost/Entry');
+mongoose.connect('mongodb://localhost/best')
 
 
 
