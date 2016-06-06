@@ -65,7 +65,8 @@ angular.module('BestEverCtrls', ['BestEverServices'])
 	$state.go('profile');
 }])
 
-.controller('NewCtrl', ['$scope', '$state', '$stateParams', 'Entry', function($scope, $state, $stateParams, Entry) {
+.controller('NewCtrl', ['$scope', '$state', '$stateParams', '$location', 'Entry', 
+	function($scope, $state, $stateParams, $location, Entry) {
 	  $scope.entry = {
     title: '',
     artist: '',
@@ -77,7 +78,7 @@ angular.module('BestEverCtrls', ['BestEverServices'])
 
   $scope.createEntry = function() {
     Entry.save($scope.entry, function success(data) {
-      $location.path('/new_entry');
+      $location.path('/');
     }, function error(data) {
       console.log(data);
     });
@@ -87,5 +88,13 @@ angular.module('BestEverCtrls', ['BestEverServices'])
 }])
 
 .controller('ViewCtrl', ['$scope', '$state', '$stateParams', function($scope, $state, $stateParams) {
+	$scope.entry = {};
+
+  Entry.get({id: $stateParams.id}, function success(data) {
+    $scope.entry = data;
+  }, function error(data) {
+    console.log(data);
+  });
+
 	$state.go('viewEntry');
 }])
