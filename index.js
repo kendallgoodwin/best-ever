@@ -6,7 +6,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // Mongoose stuff
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/family-tree');
+mongoose.connect('mongodb://localhost/best-ever');
 
 app.get('/', function(req, res) {
   res.send('Hi!');
