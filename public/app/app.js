@@ -4,14 +4,14 @@ angular.module('BestEverApp', ['BestEverCtrls', 'ui.router'])
   $urlRouterProvider.otherwise('/404');
 
   $stateProvider
-  .state('sign-up', {
+  .state('signup', {
     url: '/',
-    templateUrl: 'app/views/sign-up.html',
+    templateUrl: 'views/signup.html',
     controller: 'AuthCtrl'
   })
   .state('404', {
     url: '/404',
-    templateUrl: 'app/views/404.html'
+    templateUrl: 'views/404.html'
   });
 
   $locationProvider.html5Mode(true);

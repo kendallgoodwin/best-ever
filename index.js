@@ -8,9 +8,10 @@ app.use(express.static(__dirname + '/public'));
 
 // Mongoose stuff
 var mongoose = require('mongoose');
+var User = require('./models/user');
 mongoose.connect('mongodb://localhost/best-ever');
 
-var User = require('./models/user');
+
 
 // create a new user called Chris
 var kendall = new User({

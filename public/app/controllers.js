@@ -1,6 +1,6 @@
 angular.module('BestEverCtrls', ['BestEverServices'])
 
-.controller('AuthCtrl', ['$scope', '$stateParams', 'Films', function($scope, $stateParams, Films) {
+.controller('AuthCtrl', ['$scope', '$stateParams', function($scope, $stateParams) {
   $scope.film = {};
 
   User.get({id: $stateParams.id}, function success(data) {
