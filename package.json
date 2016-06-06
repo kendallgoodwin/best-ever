@@ -1,0 +1,24 @@
+{
+  "name": "best-ever",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kendallgoodwin/best-ever.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kendallgoodwin/best-ever/issues"
+  },
+  "homepage": "https://github.com/kendallgoodwin/best-ever#readme",
+  "dependencies": {
+    "body-parser": "^1.15.1",
+    "express": "^4.13.4",
+    "mongoose": "^4.4.20"
+  }
+}
