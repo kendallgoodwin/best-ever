@@ -1,6 +1,6 @@
 angular.module('BestEverCtrls', ['BestEverServices'])
 
-.controller('AuthCtrl', ['$scope', '$stateParams', function($scope, $stateParams) {
+.controller('SignUpCtrl', ['$scope', '$stateParams', function($scope, $stateParams) {
   $scope.film = {};
 
   User.get({id: $stateParams.id}, function success(data) {
@@ -9,5 +9,9 @@ angular.module('BestEverCtrls', ['BestEverServices'])
     console.log(data);
   });
 
-  $state.go('sign-up');
+  $state.go('signup');
 }])
+.controller('LoginCtrl', ['$scope', '$stateParams', function($scope, $stateParams) {
+
+	$state.go('login');
+	}])

@@ -7,9 +7,9 @@ var userSchema = new mongoose.Schema({
 	password: String
 });
 
-userSchema.methods.sayHello = function() {
-  return "Hi " + this.username;
-};
+// userSchema.methods.sayHello = function() {
+//   return "Hi " + this.username;
+// };
 
 var User = mongoose.model('User', userSchema);
 

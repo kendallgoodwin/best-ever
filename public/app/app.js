@@ -7,7 +7,12 @@ angular.module('BestEverApp', ['BestEverCtrls', 'ui.router'])
   .state('signup', {
     url: '/',
     templateUrl: 'views/signup.html',
-    controller: 'AuthCtrl'
+    controller: 'SignUpCtrl'
+  })
+  .state('login', {
+    url: '/login',
+    templateUrl: 'views/login.html',
+    controller: 'LoginCtrl'
   })
   .state('404', {
     url: '/404',
