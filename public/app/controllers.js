@@ -33,13 +33,14 @@ angular.module('BestEverCtrls', ['BestEverServices'])
 .controller('LoginCtrl', ['$scope', '$http', '$location', '$state', '$stateParams', 'Auth', 
 	function($scope, $http, $location, $state, $stateParams, Auth) {
   $scope.user = {
-    email: '',
+    username: '',
     password: ''
   };
   $scope.userLogin = function() {
     $http.post('/api/auth', $scope.user).then(function success(res) {
       Auth.saveToken(res.data.token);
       console.log('Token:', res.data.token)
+      // console.log('Logged in')
       $location.path('/');
     }, function error(res) {
       console.log(res);

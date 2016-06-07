@@ -34,14 +34,14 @@ app.use('/api/users', require('./controllers/users'));
 
 var User = require('./models/user');
 app.post('/api/auth', function(req, res){
-	User.findOne({email:req.body.email}, function(err, user){
+	User.findOne({username:req.body.username}, function(err, user){
 		user.authenticated(req.body.password, function(err, loggedUser){
 			if(err||!loggedUser){}
 				var token = jwt.sign({username:loggedUser.username}, secret)
 			res.json({token:token})
 		})
 	})
-})
+});
 
 app.get('/*', function(req, res) {
   res.sendFile(path.join(__dirname, 'public/index.html'));

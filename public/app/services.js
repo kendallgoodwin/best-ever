@@ -16,6 +16,7 @@ angular.module('BestEverServices', ['ngResource'])
     isLoggedIn: function() {
       var token = this.getToken();
       return token ? true : false;
+      console.log(token);
     },
     currentUser: function() {
       if (this.isLoggedIn()) {
