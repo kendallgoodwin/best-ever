@@ -1,10 +1,10 @@
 angular.module('BestEverCtrls', ['BestEverServices'])
 
 .controller('EntriesCtrl', ['$scope', '$state', '$stateParams', 'Entry', function($scope, $state, $stateParams, Entry) {
-	$scope.entry = [];
+	$scope.entries = [];
 
   Entry.query(function success(data) {
-    $scope.entry = data;
+    $scope.entries = data;
   }, function error(data) {
     console.log(data);
   });

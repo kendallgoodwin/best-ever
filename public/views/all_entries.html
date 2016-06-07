@@ -1,6 +1,8 @@
 <div class="container">
-	<div class="well" ng-repeat="entry in entries track by entry._id">
-	  <h1>{{entry.title}}</h1>
-	  <h2>{{entry.artist}}</h2>
+	<h1>Entries</h1>
+	<div class="well" ng-repeat="entry in entries track by entry.title">
+	  <h3>{{entry.title}}</h3>
+	  <h4>{{entry.artist}}</h4>
+	  <h5>{{entry.userId}}</h5>
 	</div>
 </div>
