@@ -24,6 +24,7 @@ angular.module('BestEverServices', ['ngResource'])
         try {
           var payload = JSON.parse($window.atob(token.split('.')[1]));
           return payload;
+          console.log(payload);
         } catch(err) {
           return false;
         }

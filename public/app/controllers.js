@@ -52,6 +52,7 @@ angular.module('BestEverCtrls', ['BestEverServices'])
 
 .controller('NavCtrl', ['$scope', 'Auth', function($scope, Auth) {
   $scope.Auth = Auth;
+  $scope.currentUser = Auth.currentUser();
   $scope.logout = function() {
     Auth.removeToken();
     console.log('My token:', Auth.getToken());

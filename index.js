@@ -36,8 +36,15 @@ var User = require('./models/user');
 app.post('/api/auth', function(req, res){
 	User.findOne({username:req.body.username}, function(err, user){
 		user.authenticated(req.body.password, function(err, loggedUser){
-			if(err||!loggedUser){}
-				var token = jwt.sign({username:loggedUser.username}, secret)
+			if(err || !loggedUser) {
+				res.send({error: err});
+			}
+			var userInfo = {username: user.username};
+			console.log("userInfo:", userInfo);
+			
+			var token = jwt.sign(userInfo, secret)
+		  
+		  console.log("token:", token);
 			res.json({token:token})
 		})
 	})
