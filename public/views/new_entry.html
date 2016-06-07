@@ -1,26 +1,23 @@
 <div class="container">
   <form ng-submit="createEntry()">
     <div class="form-group">
-      <label for="description">Title</label>
+      <label for="title">Title</label>
       <textarea class="form-control" id="description" ng-model="entry.title"></textarea>
     </div>
     <div class="form-group">
-      <label for="description">Artist</label>
+      <label for="artist">Artist</label>
       <textarea class="form-control" id="description" ng-model="entry.artist"></textarea>
     </div>
      <div class="form-group">
-      <label for="description">Category</label>
+      <label for="category">Category</label>
       <textarea class="form-control" id="description" ng-model="entry.category"></textarea>
     </div>
      <div class="form-group">
-      <label for="description">Argument</label>
+      <label for="argument">Argument</label>
       <textarea class="form-control" id="description" ng-model="entry.argument"></textarea>
     </div>
-     <!-- <div class="form-group">
-      <label for="description">Shedding</label>
-      <textarea class="form-control" id="description" ng-model="breed.shedding"></textarea>
-    </div>
-     <div class="form-group">
+    <input type="hidden" id="username" ng-model="entry.username">
+<!--      <div class="form-group">
       <label for="description">Energy Level</label>
       <textarea class="form-control" id="description" ng-model="breed.energylevel"></textarea>
     </div>

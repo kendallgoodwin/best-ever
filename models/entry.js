@@ -6,7 +6,7 @@ var entrySchema = new mongoose.Schema({
   category: String,
   argument: String,
   image: String,
-  userId: Number, 
+  user: String, 
   upvotes: Number
 });
 

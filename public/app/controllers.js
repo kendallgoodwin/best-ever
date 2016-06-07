@@ -67,15 +67,16 @@ angular.module('BestEverCtrls', ['BestEverServices'])
 	$state.go('profile');
 }])
 
-.controller('NewCtrl', ['$scope', '$state', '$stateParams', '$location', 'Entry', 
-	function($scope, $state, $stateParams, $location, Entry) {
+.controller('NewCtrl', ['$scope', '$state', '$stateParams', '$location', 'Entry', 'Auth',
+	function($scope, $state, $stateParams, $location, Entry, Auth) {
+	  $scope.user = Auth.currentUser();
 	  $scope.entry = {
     title: '',
     artist: '',
     category: '', 
     argument: '', 
     image: '',
-    userId: '', 
+    user: $scope.user.username, 
   };
 
   $scope.createEntry = function() {
