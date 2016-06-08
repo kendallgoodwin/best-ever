@@ -14,11 +14,12 @@
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse navbar-ex1-collapse">
   		<ul class="nav navbar-nav navbar-right">
+  			<li><a href="/dashboard" ng-show="Auth.isLoggedIn()">Dashboard</a></li>
   		 	<li><a href="/new_entry" ng-show="Auth.isLoggedIn()">Create Entry</a></li>
 		    <li><a href="/signup" ng-hide="Auth.isLoggedIn()">Signup</a></li>
 		    <li><a href="/login" ng-hide="Auth.isLoggedIn()">Login</a></li>
 		    <li><a href="/" ng-click="logout()" ng-show="Auth.isLoggedIn()">Logout</a></li>
-		    <li><a href="/profile" ng-show="Auth.isLoggedIn()">{{currentUser.username}}</li>
+		    <li><a href="/profile/{{currentUser.username}}" ng-show="Auth.isLoggedIn()">{{currentUser.username}}</li>
   		</ul>
 			
 

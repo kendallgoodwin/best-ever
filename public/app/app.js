@@ -1,10 +1,19 @@
 angular.module('BestEverApp', ['BestEverCtrls', 'ui.router'])
+// , 'angular-cloudinary'
+// .config(function (cloudinaryProvider) {
+//   cloudinaryProvider.config({
+//     upload_endpoint: 'https://api.cloudinary.com/v1_1/kendallgoodwin', // default
+//     cloud_name: 'kendallgoodwin', // required
+//     upload_preset: 'preset', // optional
+//   });
+// })
 
 .config(['$httpProvider', function($httpProvider) {
   $httpProvider.interceptors.push('AuthInterceptor');
 }])
 
-.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function($stateProvider, $urlRouterProvider, $locationProvider) {
+.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', 
+  function($stateProvider, $urlRouterProvider, $locationProvider) {
   $urlRouterProvider.otherwise('/404');
 
   $stateProvider
@@ -29,7 +38,7 @@ angular.module('BestEverApp', ['BestEverCtrls', 'ui.router'])
     controller: 'DashboardCtrl'
   })
   .state('profile', {
-    url: '/profile',
+    url: '/profile/:username',
     templateUrl: 'views/profile.html',
     controller: 'ProfileCtrl'
   })
@@ -39,7 +48,7 @@ angular.module('BestEverApp', ['BestEverCtrls', 'ui.router'])
     controller: 'NewCtrl'
   })
   .state('viewEntry', {
-    url: '/view_entry',
+    url: '/view_entry/:id',
     templateUrl: 'views/view_entry.html',
     controller: 'ViewCtrl'
   })

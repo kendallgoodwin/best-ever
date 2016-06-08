@@ -1,5 +1,6 @@
 var express = require('express');
 var User = require('../models/user');
+var Entry = require('../models/entry');
 var router = express.Router();
 
 router.route('/')
@@ -16,10 +17,19 @@ router.route('/')
     });
   });
 
-router.get('/:id', function(req, res) {
-  User.findById(req.params.id, function(err, user) {
+router.get('/:name', function(req, res) {
+  console.log(req.params);
+  User.findOne({username: req.params.name}, function(err, user) {
     if (err) return res.status(500).send(err);
     res.send(user);
+  });
+});
+
+router.get('/:name/entries', function(req, res) {
+  console.log(req.params);
+  Entry.find({user: req.params.name}, function(err, entries) {
+    if (err) return res.status(500).send(err);
+    res.send(entries);
   });
 });
 

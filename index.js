@@ -18,7 +18,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(__dirname + '/public'));
 
-app.use('/api/entries', expressJWT({secret: secret}));
+app.use('/api/entries', expressJWT({secret: secret})
+.unless({path: ['/api/entries'], method: 'get'}));
 app.use('/api/users', expressJWT({secret: secret})
 .unless({path: ['/api/users'], method: 'post'}));
 
@@ -39,7 +40,7 @@ app.post('/api/auth', function(req, res){
 			if(err || !loggedUser) {
 				res.send({error: err});
 			}
-			var userInfo = {username: user.username};
+			var userInfo = {username: user.username, id:user._id};
 			console.log("userInfo:", userInfo);
 			
 			var token = jwt.sign(userInfo, secret)
@@ -49,6 +50,26 @@ app.post('/api/auth', function(req, res){
 		})
 	})
 });
+
+app.get('/api/profile/:username', function(req, res) {
+	Entry.find({user:req.params.username}, function(err, user) {
+		if (err) {
+			res.send({error:err});
+		}
+		res.send(data);
+		console.log(data);
+	})
+})
+
+app.get('/api/dashboard/:username', function(req, res) {
+	Entry.find({user:req.params.username}, function(err, user) {
+		if (err || !loggedUser) {
+			res.send({error: err});
+		}
+		res.send(data);
+		console.log(data);
+	})
+})
 
 app.get('/*', function(req, res) {
   res.sendFile(path.join(__dirname, 'public/index.html'));

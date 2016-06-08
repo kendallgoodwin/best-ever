@@ -2,6 +2,9 @@ angular.module('BestEverServices', ['ngResource'])
 .factory('Entry', ['$resource', function($resource) {
   return $resource('/api/entries/:id');
 }])
+.factory('User', ['$resource', function($resource) {
+  return $resource('/api/users/:id');
+}])
 .factory('Auth', ['$window', function($window) {
   return {
     saveToken: function(token) {

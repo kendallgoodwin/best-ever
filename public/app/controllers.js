@@ -1,6 +1,7 @@
 angular.module('BestEverCtrls', ['BestEverServices'])
 
-.controller('EntriesCtrl', ['$scope', '$state', '$stateParams', 'Entry', function($scope, $state, $stateParams, Entry) {
+.controller('EntriesCtrl', ['$scope', '$state', '$stateParams', 'Entry', 
+	function($scope, $state, $stateParams, Entry) {
 	$scope.entries = [];
 
   Entry.query(function success(data) {
@@ -21,6 +22,7 @@ angular.module('BestEverCtrls', ['BestEverServices'])
 	  };
 	  $scope.userSignup = function() {
 	    $http.post('/api/users', $scope.user).then(function success(res) {
+	      // Auth.saveToken(res.data.token)
 	      $location.path('/');
 	    }, function error(res) {
 	      console.log(res);
@@ -59,11 +61,31 @@ angular.module('BestEverCtrls', ['BestEverServices'])
   }
 }])
 
-.controller('DashboardCtrl', ['$scope', '$state', '$stateParams', function($scope, $state, $stateParams) {
+.controller('DashboardCtrl', ['$scope', '$state', '$stateParams', '$http', 'Auth', 'User', 
+	function($scope, $state, $stateParams, $http, Auth, User) {
+		$scope.user = Auth.currentUser();
+
+		$http({url:'/api/users/' + $scope.user + '/entries'}).then(function success(res) {
+			$scope.entries = res.data;
+			console.log(res);
+		}, function err(data) {
+			$scope.error = data;
+		})
+
 	$state.go('dashboard');
 }])
 
-.controller('ProfileCtrl', ['$scope', '$state', '$stateParams', function($scope, $state, $stateParams) {
+.controller('ProfileCtrl', ['$scope', '$state', '$stateParams', '$http',
+	function($scope, $state, $stateParams, $http) {
+		$scope.user = $stateParams.username;
+
+		$http({url:'/api/users/' + $scope.user + '/entries'}).then(function success(res) {
+			$scope.entries = res.data;
+			console.log(res);
+		}, function err(data) {
+			$scope.error = data;
+		})
+
 	$state.go('profile');
 }])
 
