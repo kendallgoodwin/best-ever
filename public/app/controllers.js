@@ -229,7 +229,7 @@ angular.module('BestEverCtrls', ['photoAlbumServices'])
 
 		$scope.delete = function(index) {
 			var entry = $scope.entries[index]._id
-			alert(entry);
+			// alert(entry);
 			$http({url:'/api/entries/' + entry, method: 'DELETE'}).then(function success(res) {
 				$scope.entries.splice(index, 1);
 			}, function error(res) {

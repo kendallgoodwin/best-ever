@@ -104,6 +104,8 @@ form .error { color: #c55; margin: 0 10px; }
 
 .prof-img {
     float: left;
+    margin-right: 15px;
+    margin-bottom: 15px;
 }
 
 .title {
@@ -139,5 +141,29 @@ form .error { color: #c55; margin: 0 10px; }
 
 .navbar-default {
     border: 15px solid black;
+}
+
+.info {
+    float: right;
+    margin-right: 10px;
+}
+
+.profile-info {
+    float: none;
+}
+
+
+
+
+@media (min-width: 900px) {
+    .info {
+        margin-right: 25px;
+    }
+}
+
+@media (max-width: 700px) {
+    .info {
+        float: none;
+    }
 }
 
