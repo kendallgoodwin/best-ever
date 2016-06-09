@@ -1,7 +1,11 @@
-body { font-family: Helvetica, Arial, sans-serif; color: #333; margin: 10px; width: 960px; word-wrap: break-word; }
+body { font-family: Helvetica, Arial, sans-serif; color: #333; margin: 10px; width: 960px; word-wrap: break-word;
+background-image: url("http://images.unsplash.com/photo-1459233313842-cd392ee2c388?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=a6e1f90091d3ac970fb64a53609f3e34"); 
+background-size: cover;
+background-attachment: fixed;
+}
 #posterframe { position: absolute; right: 10px; top: 10px; }
-h1 { color: #0e2953; font-size: 18px; }
-h2 { color: #666; font-size: 16px; }
+h1 { color: black; font-weight: bold; font-family: 'Cantata One', serif}
+/*h2 { color: #666; font-size: 16px; font-family: 'Roboto Slab', serif;}*/
 p { font-size: 14px; line-height: 18px; }
 #logo { height: 51px; width: 241px; }
 a { color: #0b63b6 }
@@ -96,3 +100,44 @@ form .error { color: #c55; margin: 0 10px; }
     max-width: 300px;
     max-height: 150px;
 }
+
+
+.prof-img {
+    float: left;
+}
+
+.title {
+    /*float: right;*/
+    /*display: block;*/
+    font-weight: bold;
+    font-family: 'Roboto', sans-serif;
+}
+
+.artist {
+    /*display: block;*/
+    /*float: right;*/
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+    font-size: 25px;
+}
+
+.user {
+    /*display: block;*/
+    /*float: left;*/
+}
+
+.nav-item {
+    font-size: 20px;
+    color: black;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.well {
+    border: 15px solid black;
+    /*background: ;*/
+}
+
+.navbar-default {
+    border: 15px solid black;
+}
+

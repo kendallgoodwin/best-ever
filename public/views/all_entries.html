@@ -1,5 +1,5 @@
 <div class="container">
-	<div class="col-md-offset-2 col-md-8">
+	<div class="col-sm-4 col-md-7">
 		<h1>All Entries</h1>
 <!-- 	<div>
 		<input type="text" class="form-control" ng-model="searchTerm" placeholder="Search...">
@@ -7,9 +7,9 @@
 
 		<div class="well" ng-repeat="entry in entries track by $index">
 		  <img src="{{entry.image}}" width="200">
-		  <h3>{{entry.title}}</h3>
-		  <h4>{{entry.artist}}</h4>
-		  <h5>{{entry.user}}</h5>
+		  <h2 class="title">{{entry.title}}</h3>
+		  <h4 class="artist">{{entry.artist}}</h4><br>
+		  <h5 class="user">{{entry.user}}</h5>
 		</div>
 	</div>
 </div>
