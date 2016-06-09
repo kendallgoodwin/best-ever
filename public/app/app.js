@@ -1,12 +1,41 @@
-angular.module('BestEverApp', ['BestEverCtrls', 'ui.router'])
-// , 'angular-cloudinary'
-// .config(function (cloudinaryProvider) {
-//   cloudinaryProvider.config({
-//     upload_endpoint: 'https://api.cloudinary.com/v1_1/kendallgoodwin', // default
-//     cloud_name: 'kendallgoodwin', // required
-//     upload_preset: 'preset', // optional
-//   });
-// })
+var photoAlbumApp = angular.module('photoAlbumApp', [
+  'BestEverCtrls',
+  'ui.router',
+  'ngRoute',
+  'cloudinary',
+  'photoAlbumAnimations',
+  'photoAlbumControllers',
+  'photoAlbumServices',
+  'ngAnimate'
+])
+
+.config(['$routeProvider',
+  function ($routeProvider) {
+    $routeProvider.when('/photos', {
+      templateUrl: 'partials/photo-list.html',
+      resolve: {
+        photoList: function ($q, $rootScope, album) {
+          if (!$rootScope.serviceCalled) {
+            return album.photos({}, function (v) {
+              $rootScope.serviceCalled = true;
+              $rootScope.photos = v.resources;
+            });
+          } else {
+            return $q.when(true);
+          }
+        }
+      }
+    }).when('/photos/new', {
+      templateUrl: 'partials/photo-upload.html',
+      controller: 'photoUploadCtrl'
+    }).otherwise({
+      redirectTo: '/photos'
+    });
+}])
+
+
+// angular.module('BestEverApp', ['BestEverCtrls', 'ui.router'])
+
 
 .config(['$httpProvider', function($httpProvider) {
   $httpProvider.interceptors.push('AuthInterceptor');
@@ -45,7 +74,7 @@ angular.module('BestEverApp', ['BestEverCtrls', 'ui.router'])
   .state('newEntry', {
     url: '/new_entry',
     templateUrl: 'views/new_entry.html',
-    controller: 'NewCtrl'
+    controller: 'photoUploadCtrl'
   })
   .state('viewEntry', {
     url: '/view_entry/:id',
@@ -57,5 +86,11 @@ angular.module('BestEverApp', ['BestEverCtrls', 'ui.router'])
     templateUrl: 'views/404.html'
   });
 
-  $locationProvider.html5Mode(true);
+  $locationProvider.html5Mode({enabled:true});
+}])
+
+.config(['cloudinaryProvider', function (cloudinaryProvider) {
+  cloudinaryProvider
+      .set("cloud_name", "kendallgoodwin")
+      .set("upload_preset", "preset");
 }]);

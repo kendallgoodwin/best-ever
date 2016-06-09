@@ -1,5 +1,19 @@
-angular.module('BestEverServices', ['ngResource'])
-.factory('Entry', ['$resource', function($resource) {
+var photoAlbumServices = angular.module('photoAlbumServices', ['ngResource', 'cloudinary']);
+
+photoAlbumServices.factory('album', ['$rootScope', '$resource', 'cloudinary',
+  function($rootScope, $resource, cloudinary){
+    // instead of maintaining the list of images, we rely on the 'myphotoalbum' tag
+    // and simply retrieve a list of all images with that tag.
+    var url = cloudinary.url('myphotoalbum', {format: 'json', type: 'list'});
+    //cache bust
+    url = url + "?" + Math.ceil(new Date().getTime()/1000);
+    return $resource(url, {}, {
+      photos: {method:'GET', isArray:false}
+    });
+}])
+
+// angular.module('BestEverServices', ['ngResource'])
+.factory('Entry', ['$resource', 'cloudinary', function($resource) {
   return $resource('/api/entries/:id');
 }])
 .factory('User', ['$resource', function($resource) {
@@ -39,10 +53,12 @@ angular.module('BestEverServices', ['ngResource'])
   return {
     request: function(config) {
       var token = Auth.getToken();
-      if (token) {
+      if (token && config.url.indexOf('cloudinary') === -1) {
         config.headers.Authorization = 'Bearer ' + token;
       }
       return config;
     }
   }
 }])
+
+

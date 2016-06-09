@@ -1,35 +1,107 @@
-angular.module('BestEverCtrls', ['BestEverServices'])
+var photoAlbumControllers = angular.module('photoAlbumControllers', ['ngFileUpload', 'photoAlbumServices']);
+
+photoAlbumControllers.controller('photoUploadCtrl', 
+  ['$scope', '$state', '$stateParams', '$rootScope', '$routeParams', '$location', 'Upload', 'cloudinary', 
+  'Entry', 'Auth', 
+  /* Uploading with Angular File Upload */
+  function($scope, $state, $stateParams, $rootScope, $routeParams, $location, $upload, cloudinary, Entry, Auth) {
+    var d = new Date();
+    $scope.title = "Image (" + d.getDate() + " - " + d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds() + ")";
+    //$scope.$watch('files', function() {
+    // $scope.image = '';
+    $scope.uploadFiles = function(files){
+      $scope.files = files;
+      if (!$scope.files) return;
+      angular.forEach(files, function(file){
+        if (file && !file.$error) {
+          file.upload = $upload.upload({
+            url: "https://api.cloudinary.com/v1_1/" + cloudinary.config().cloud_name + "/upload",
+            data: {
+              upload_preset: cloudinary.config().upload_preset,
+              tags: 'myphotoalbum',
+              context: 'photo=' + $scope.title,
+              file: file
+            },
+            skipAuthorization: true
+          }).progress(function (e) {
+            console.log('progress is made', e);
+            file.progress = Math.round((e.loaded * 100.0) / e.total);
+            file.status = "Uploading... " + file.progress + "%";
+          }).success(function (data, status, headers, config) {
+            console.log('sucess was done');
+            $rootScope.photos = $rootScope.photos || [];
+            data.context = {custom: {photo: $scope.title}};
+            file.result = data;
+            $scope.image = file.result.url;
+            // console.log($scope.image);
+            $rootScope.photos.push(data);
+            console.log('data:', $scope.image);
+          }).error(function (data, status, headers, config) {
+            console.log('error occured');
+            file.result = data;
+          });
+        }
+      });
+    };
+    //});
+
+    // /* Modify the look and fill of the dropzone when files are being dragged over it */
+    $scope.dragOverClass = function($event) {
+      var items = $event.dataTransfer.items;
+      var hasFile = false;
+      if (items != null) {
+        for (var i = 0 ; i < items.length; i++) {
+          if (items[i].kind == 'file') {
+            hasFile = true;
+            break;
+          }
+        }
+      } else {
+        hasFile = true;
+      }
+      return hasFile ? "dragover" : "dragover-err";
+    };
+
+    // $scope.image = uploadFiles(files);
+    // $scope.image = file.result.url;
+    console.log($scope.image);
+    $scope.user = Auth.currentUser();
+    
+    $scope.entry = {
+    title: '',
+    artist: '',
+    category: '', 
+    argument: '', 
+    image: '',
+    user: $scope.user.username, 
+  };
+
+  $scope.createEntry = function() {
+    console.log('url:', $scope.image)
+    var newEntry = {
+      title: $scope.entry.title,
+      artist: $scope.entry.artist,
+      category: $scope.entry.category, 
+      argument: $scope.entry.argument, 
+      image: $scope.image,
+      user: $scope.user.username, 
+    }
+
+    Entry.save(newEntry, function success(data) {
+      $location.path('/');
+    }, function error(data) {
+      console.log(data);
+    });
+  }
+
+  $state.go('newEntry');
+}]);
+
+
+angular.module('BestEverCtrls', ['photoAlbumServices'])
 
 .controller('EntriesCtrl', ['$scope', '$state', '$stateParams', 'Entry', 
 	function($scope, $state, $stateParams, Entry) {
-	// $scope.searchTerm = '';
-
-	// $scope.search = function() {
-	// 	var req = {
-	// 		url: 'http://www.reddit.com/search.json?q=' + $scope.searchTerm, 
-	// 		method: 'get'
-	// 	}
-	// 	$http(req).then(function success(res) {
-	// 		var redditData = res.data;
-	// 		var articleData = redditData.data.children
-	// 		// console.log(redditData);
-	// 		$scope.articleArray = [];
-	// 		for (var i = 0; i < articleData.length; i++) {
-	// 			var articles = articleData[i];
-	// 			// console.log(articles);
-	// 			$scope.articleArray.push(articles);
-	// 			// console.log($scope.articleArray);
-	// 		} 
-
-	// 		$scope.history.push($scope.searchTerm);
-	// 		localStorage.setItem("hist", JSON.stringify($scope.history));
-	// 		console.log(localStorage.getItem('hist'))
-
-	// 	}, function error(res) {
-	// 		console.log(res);
-	// 	});
-	// }
-
 	$scope.entries = [];
 
   Entry.query(function success(data) {
@@ -92,6 +164,7 @@ angular.module('BestEverCtrls', ['BestEverServices'])
 .controller('DashboardCtrl', ['$scope', '$state', '$stateParams', '$http', 'Auth', 'User', 
 	function($scope, $state, $stateParams, $http, Auth, User) {
 		$scope.currentEdit = false;
+
 		$scope.update = function(index) {
 			$scope.currentEdit = index;
 			$scope.edit = $scope.entries[index]
@@ -120,11 +193,9 @@ angular.module('BestEverCtrls', ['BestEverServices'])
 			$http({url:'/api/entries/' + entry, method: 'DELETE'}).then(function success(res) {
 				$scope.entries.splice(index, 1);
 			}, function error(res) {
-
+				console.log(res);
 			})
 		}
-
-
 
 	$state.go('dashboard');
 }])
@@ -143,28 +214,28 @@ angular.module('BestEverCtrls', ['BestEverServices'])
 	$state.go('profile');
 }])
 
-.controller('NewCtrl', ['$scope', '$state', '$stateParams', '$location', 'Entry', 'Auth',
-	function($scope, $state, $stateParams, $location, Entry, Auth) {
-	  $scope.user = Auth.currentUser();
-	  $scope.entry = {
-    title: '',
-    artist: '',
-    category: '', 
-    argument: '', 
-    image: '',
-    user: $scope.user.username, 
-  };
+// .controller('NewCtrl', ['$scope', '$state', '$stateParams', '$location', 'Entry', 'Auth',
+// 	function($scope, $state, $stateParams, $location, Entry, Auth) {
+// 	  $scope.user = Auth.currentUser();
+// 	  $scope.entry = {
+//     title: '',
+//     artist: '',
+//     category: '', 
+//     argument: '', 
+//     image: '',
+//     user: $scope.user.username, 
+//   };
 
-  $scope.createEntry = function() {
-    Entry.save($scope.entry, function success(data) {
-      $location.path('/');
-    }, function error(data) {
-      console.log(data);
-    });
-  }
+//   $scope.createEntry = function() {
+//     Entry.save($scope.entry, function success(data) {
+//       $location.path('/');
+//     }, function error(data) {
+//       console.log(data);
+//     });
+//   }
 
-	$state.go('newEntry');
-}])
+// 	$state.go('newEntry');
+// }])
 
 .controller('ViewCtrl', ['$scope', '$state', '$stateParams', function($scope, $state, $stateParams) {
 	$scope.entry = {};

@@ -1,3 +1,7 @@
+
+
+
+
 <div class="container">
   <form ng-submit="createEntry()">
     <div class="form-group">
@@ -17,6 +21,34 @@
       <textarea class="form-control" id="argument" ng-model="entry.argument"></textarea>
     </div>
     <input type="hidden" id="username" ng-model="entry.user">
+
+        <div class="form-group">
+        <label>Image</label>
+      <div class="form_controls">
+          <div class="upload_button_holder">
+            <div href="#" class="upload_button" ngf-select="uploadFiles($files)" multiple title="upload" resetOnClick="true" >Upload
+            </div>
+          </div>
+      </div>
+    </div>
+    
+      <div class="file" ng-repeat="file in files">
+        <h3>{{file.name}} {{f.$error}} {{f.$errorParam}}</h3>
+        <div class="status">
+          {{file.status}}
+        </div>
+        <div class="progress-bar">
+          <div class="progress" style="width: {{file.progress}}%" ng-init="progress=0"></div>
+        </div>
+        <div class="form_line">
+            <div class="form_controls">
+                <div class="preview">
+                    <img ngf-src="file.result.url || file">
+                </div>
+            </div>
+        </div>
+
+    </div>
 
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>

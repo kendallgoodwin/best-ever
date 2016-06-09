@@ -12,7 +12,9 @@ var mongoose = require('mongoose');
 var User = require('./models/user');
 var Entry = require('./models/entry');
 // mongoose.connect('mongodb://localhost/Entry');
-mongoose.connect('mongodb://localhost/best')
+// mongoose.connect('mongodb://localhost/best')
+var mongourl = "mongodb://"+process.env.MONGO_USER+":"+process.env.MONGO_PASS+"@ds011374.mlab.com:11374/besteverdatabase"
+mongoose.connect(mongourl)
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
