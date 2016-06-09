@@ -1,6 +1,10 @@
 <div class="container">
 	<h1>Entries</h1>
-	<div class="well" ng-repeat="entry in entries track by entry.title">
+<!-- 	<div>
+		<input type="text" class="form-control" ng-model="searchTerm" placeholder="Search...">
+	</div> -->
+
+	<div class="well" ng-repeat="entry in entries track by $index">
 	  <h3>{{entry.title}}</h3>
 	  <h4>{{entry.artist}}</h4>
 	  <h5>{{entry.user}}</h5>

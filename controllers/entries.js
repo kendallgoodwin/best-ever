@@ -1,6 +1,7 @@
 var express = require('express');
 var Entry = require('../models/entry');
 var router = express.Router();
+// var Entry = require('../models/entry');
 
 router.route('/')
   .get(function(req, res) {
