@@ -1,17 +1,39 @@
 <div class="container">
-<div class="well" ng-repeat="entry in entries">
-<h1>{{entry.title}}</h1>
-<button class="btn btn-primary" ng-click="delete($index)">Delete</button>
-<button class="btn btn-primary" ng-click="update($index)">Update</button>
+	<div class="col-md-offset-2 col-md-8">
 
-<div ng-if="$index===currentEdit">
-<input ng-model="edit.title">
-<input ng-model="edit.artist">
-<input ng-model="edit.category">
-<input ng-model="edit.argument">
-<button class="btn btn-primary" ng-click="save()"></button>
+		<h1>Dashboard</h1>
+<!-- <div ng-repeat="entry in entries">
+<h3>{{entry.user}}</h3>
+</div> -->
+
+
+			<div class="well" ng-repeat="entry in entries">
+				<img src="{{entry.image}}" width="200">
+				<h1>{{entry.title}}</h1>
+				<button class="btn btn-primary" ng-click="delete($index)">Delete</button>
+				<button class="btn btn-primary" ng-click="update($index)">Edit</button>
+
+			<div ng-if="$index===currentEdit">
+				<input ng-model="edit.title">
+				<input ng-model="edit.artist">
+				<input ng-model="edit.category">
+				<input ng-model="edit.argument">
+				<button class="btn btn-primary" ng-click="save()">Update</button>
+			</div>
+	</div>
 </div>
 
-</div>
-</div>
+<!--   <ul class="collection">
+    <li class="collection-item avatar" ng-repeat="entry in entries">
+      <img src="{{entry.image}}" alt="" class="circle">
+      <span class="title">{{entry.title}}</span>
+      <p>{{entry.artist}}<br>
+         Second Line
+      </p>
+      <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+      <button class="btn btn-primary" ng-click="delete($index)">Delete</button>
+			<button class="btn btn-primary" ng-click="update($index)">Update</button>
+    </li>
+  </ul>
+</div> -->
 

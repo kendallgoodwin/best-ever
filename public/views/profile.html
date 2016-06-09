@@ -1,6 +1,18 @@
 <div class="container">
-<div class="well" ng-repeat="entry in entries">
-<h1>{{entry.title}}</h1>
-<h2>{{entry.artist}}</h2>
+	<div class="col-md-offset-2 col-md-8">
+		<div class="well" ng-repeat="entry in entries">
+			<img src="{{entry.image}}" width="200">
+			<h2>{{entry.title}}</h1>
+			<h3>{{entry.artist}}</h2>
+		</div>
+	</div>
 </div>
-</div>
+
+<!-- <div class="container">
+	<ul class="collapsible popout" data-collapsible="accordion" watch>
+	    <li ng-repeat="entry in entries">
+	        <div class="collapsible-header"><i class="{{entry.image}}"></i>{{entry.title}}</div>
+	        <div class="collapsible-body"><p>{{entry.artist}}</p></div>
+	    </li>
+	</ul>
+</div> -->

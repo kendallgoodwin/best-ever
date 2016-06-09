@@ -1,10 +1,10 @@
 var photoAlbumControllers = angular.module('photoAlbumControllers', ['ngFileUpload', 'photoAlbumServices']);
 
 photoAlbumControllers.controller('photoUploadCtrl', 
-  ['$scope', '$state', '$stateParams', '$rootScope', '$routeParams', '$location', 'Upload', 'cloudinary', 
+  ['$scope', '$state', '$stateParams', '$rootScope', '$routeParams', '$location', '$http', 'Upload', 'cloudinary', 
   'Entry', 'Auth', 
   /* Uploading with Angular File Upload */
-  function($scope, $state, $stateParams, $rootScope, $routeParams, $location, $upload, cloudinary, Entry, Auth) {
+  function($scope, $state, $stateParams, $rootScope, $routeParams, $location, $http, $upload, cloudinary, Entry, Auth) {
     var d = new Date();
     $scope.title = "Image (" + d.getDate() + " - " + d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds() + ")";
     //$scope.$watch('files', function() {
@@ -62,9 +62,49 @@ photoAlbumControllers.controller('photoUploadCtrl',
       return hasFile ? "dragover" : "dragover-err";
     };
 
+ //    $scope.searchTerm = '';
+ //    $scope.audioArray = [];
+
+ //    $scope.search = function() {
+	// 	var req = {
+	// 		url: 'https://itunes.apple.com/search?term=' + $scope.searchTerm + '&limit=25', 
+	// 		method: 'get'
+	// 	}
+	// 	$http.jsonp('https://itunes.apple.com/search', {
+	// 		params: {
+	// 			"callback": "JSON_CALLBACK",
+	// 			"term": $scope.searchTerm,
+	// 			"limit": 25
+	// 		}
+	// 	}).then(function success(res) {
+	// 		var itunesData = res.data;
+	// 		// var audio = itunesData.data
+	// 		// console.log(itunesData);
+	// 		// console.log(itunesData.results[0].previewUrl, itunesData.results[0].trackName, itunesData.results[0].artistName);
+
+	// 		$scope.audioArray = [];
+	// 		for (var i = 0; i < itunesData.length; i++) {
+	// 			var audio = itunesData.results[i];
+	// 			// console.log(articles);
+	// 			$scope.audioArray.push(audio);
+	// 			// console.log($scope.articleArray);
+	// 			console.log(audioArray);
+	// 		// $scope.articleArray = [];
+	// 		// for (var i = 0; i < articleData.length; i++) {
+	// 		// 	var articles = articleData[i];
+	// 		// 	// console.log(articles);
+	// 		// 	$scope.articleArray.push(articles);
+	// 		// 	// console.log($scope.articleArray);
+	// 		// }) 
+	// 	}
+	// 	}, function error(res) {
+	// 		console.log(res);
+	// 	})
+	// }
+
     // $scope.image = uploadFiles(files);
     // $scope.image = file.result.url;
-    console.log($scope.image);
+    // console.log($scope.image);
     $scope.user = Auth.currentUser();
     
     $scope.entry = {

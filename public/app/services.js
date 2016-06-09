@@ -53,7 +53,7 @@ photoAlbumServices.factory('album', ['$rootScope', '$resource', 'cloudinary',
   return {
     request: function(config) {
       var token = Auth.getToken();
-      if (token && config.url.indexOf('cloudinary') === -1) {
+      if (token && config.url.indexOf('cloudinary') === -1 && config.url.indexOf('itunes') === -1) {
         config.headers.Authorization = 'Bearer ' + token;
       }
       return config;

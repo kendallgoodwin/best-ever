@@ -1,6 +1,8 @@
 var photoAlbumApp = angular.module('photoAlbumApp', [
   'BestEverCtrls',
   'ui.router',
+  'ui.bootstrap',
+  // 'ui.materialize',
   'ngRoute',
   'cloudinary',
   'photoAlbumAnimations',
