@@ -25,7 +25,7 @@ router.route('/:id')
     });
   })
   .put(function(req, res) {
-    Entry.findByIdAndUpdate(req.params.id, req.body, function(err) {
+    Entry.findByIdAndUpdate(req.params.id, req.body.entry, function(err) {
       if (err) return res.status(500).send(err);
       res.send({'message': 'success'});
     });
@@ -34,6 +34,7 @@ router.route('/:id')
     Entry.findByIdAndRemove(req.params.id, function(err) {
       if (err) return res.status(500).send(err);
       res.send({'message': 'success'});
+      // make secure
     });
   });
 

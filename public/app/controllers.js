@@ -91,6 +91,20 @@ angular.module('BestEverCtrls', ['BestEverServices'])
 
 .controller('DashboardCtrl', ['$scope', '$state', '$stateParams', '$http', 'Auth', 'User', 
 	function($scope, $state, $stateParams, $http, Auth, User) {
+		$scope.currentEdit = false;
+		$scope.update = function(index) {
+			$scope.currentEdit = index;
+			$scope.edit = $scope.entries[index]
+		}
+
+		$scope.save = function() {
+			$http({url:'/api/entries/' + $scope.edit._id, method: 'PUT', data:{entry:$scope.edit}}).then(function success(res) {
+				$scope.entries[$scope.currentEdit] = $scope.edit;
+				// for angular updates!!! include elsewhere!
+				$scope.currentEdit = false;
+			})
+		}
+
 		$scope.user = Auth.currentUser();
 
 		$http({url:'/api/users/' + $scope.user.username + '/entries'}).then(function success(res) {
@@ -106,9 +120,11 @@ angular.module('BestEverCtrls', ['BestEverServices'])
 			$http({url:'/api/entries/' + entry, method: 'DELETE'}).then(function success(res) {
 				$scope.entries.splice(index, 1);
 			}, function error(res) {
-				
+
 			})
 		}
+
+
 
 	$state.go('dashboard');
 }])

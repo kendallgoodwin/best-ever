@@ -2,7 +2,16 @@
 <div class="well" ng-repeat="entry in entries">
 <h1>{{entry.title}}</h1>
 <button class="btn btn-primary" ng-click="delete($index)">Delete</button>
-<button class="btn btn-primary">Update</button>
+<button class="btn btn-primary" ng-click="update($index)">Update</button>
+
+<div ng-if="$index===currentEdit">
+<input ng-model="edit.title">
+<input ng-model="edit.artist">
+<input ng-model="edit.category">
+<input ng-model="edit.argument">
+<button class="btn btn-primary" ng-click="save()"></button>
+</div>
+
 </div>
 </div>
 
