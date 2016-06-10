@@ -1,14 +1,17 @@
-body { font-family: Helvetica, Arial, sans-serif; color: #333; margin: 10px; width: 960px; word-wrap: break-word;
+body { font-family: Helvetica, Arial, sans-serif; color: black; margin: 10px; width: 960px; word-wrap: break-word;
 background-image: url("http://images.unsplash.com/photo-1459233313842-cd392ee2c388?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=a6e1f90091d3ac970fb64a53609f3e34"); 
 background-size: cover;
 background-attachment: fixed;
+}
+li {
+    color: black;
 }
 #posterframe { position: absolute; right: 10px; top: 10px; }
 h1 { color: black; font-weight: bold; font-family: 'Cantata One', serif}
 /*h2 { color: #666; font-size: 16px; font-family: 'Roboto Slab', serif;}*/
 p { font-size: 14px; line-height: 18px; }
 #logo { height: 51px; width: 241px; }
-a { color: #0b63b6 }
+a { color: black }
 
 .actions { margin: 20px 0; }
 .upload_link { color: #000; border: 1px solid #aaa; background-color: #e0e0e0;
@@ -103,7 +106,7 @@ form .error { color: #c55; margin: 0 10px; }
 
 
 .prof-img {
-    float: left;
+    /*float: left;*/
     margin-right: 15px;
     margin-bottom: 15px;
 }
@@ -118,7 +121,7 @@ form .error { color: #c55; margin: 0 10px; }
 .artist {
     /*display: block;*/
     /*float: right;*/
-    font-family: 'Yanone Kaffeesatz', sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-size: 25px;
 }
 
@@ -127,11 +130,26 @@ form .error { color: #c55; margin: 0 10px; }
     /*float: left;*/
 }
 
-.nav-item {
+.navbar-default .navbar-brand {
+    color: black;
+}
+
+.navbar-default .nav-item {
     font-size: 20px;
     color: black;
     margin-top: 15px;
     margin-bottom: 15px;
+}
+
+.navbar-brand {
+    font-size: 50px;
+    color: black !important;
+    margin-top: 15px;
+    font-family: 'Bangers', cursive;
+}
+
+.navbar-default .navbar-nav>li>a {
+    color: black;
 }
 
 .well {
@@ -145,7 +163,7 @@ form .error { color: #c55; margin: 0 10px; }
 
 .info {
     float: right;
-    margin-right: 10px;
+    margin-right: 15px;
 }
 
 .profile-info {
