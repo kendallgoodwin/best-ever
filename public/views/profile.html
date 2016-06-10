@@ -1,9 +1,6 @@
 <div class="container">
 	<div class="col-xs-4 col-sm-7 col-md-6 col-md-offset-1">
 		<h1>Profile</h1>
-<!-- 	<div>
-		<input type="text" class="form-control" ng-model="searchTerm" placeholder="Search...">
-	</div> -->
 
 		<div class="well" ng-repeat="entry in entries">
 			<img class="prof-img" src="{{entry.image}}" width="200">
@@ -15,27 +12,3 @@
 		</div>
 	</div>
 </div>
-
-
-
-<!-- <div class="container">
-	<div class="col-xs-4 col-sm-7 col-md-6 col-md-offset-1">
-		<div class="well" ng-repeat="entry in entries">
-			<img class="prof-img" src="{{entry.image}}" width="200">
-			<div class="info">
-				<h2 class="title">{{entry.title}}</h1>
-				<h3 class="artist">{{entry.artist}}</h2>
-				<p>{{entry.argument}}</p>
-			</div>
-		</div>
-	</div>
-</div> -->
-
-<!-- <div class="container">
-	<ul class="collapsible popout" data-collapsible="accordion" watch>
-	    <li ng-repeat="entry in entries">
-	        <div class="collapsible-header"><i class="{{entry.image}}"></i>{{entry.title}}</div>
-	        <div class="collapsible-body"><p>{{entry.artist}}</p></div>
-	    </li>
-	</ul>
-</div> -->

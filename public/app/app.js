@@ -79,7 +79,7 @@ var photoAlbumApp = angular.module('photoAlbumApp', [
     controller: 'photoUploadCtrl'
   })
   .state('viewEntry', {
-    url: '/view_entry/:id',
+    url: '/entry/:id',
     templateUrl: 'views/view_entry.html',
     controller: 'ViewCtrl'
   })

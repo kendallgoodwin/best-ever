@@ -150,6 +150,7 @@ angular.module('BestEverCtrls', ['photoAlbumServices'])
     console.log(data);
   });
 
+
 	$state.go('landing');
 }])
 
@@ -254,39 +255,36 @@ angular.module('BestEverCtrls', ['photoAlbumServices'])
 	$state.go('profile');
 }])
 
-// .controller('NewCtrl', ['$scope', '$state', '$stateParams', '$location', 'Entry', 'Auth',
-// 	function($scope, $state, $stateParams, $location, Entry, Auth) {
-// 	  $scope.user = Auth.currentUser();
-// 	  $scope.entry = {
-//     title: '',
-//     artist: '',
-//     category: '', 
-//     argument: '', 
-//     image: '',
-//     user: $scope.user.username, 
-//   };
+.controller('ViewCtrl', ['$scope', '$state', '$stateParams', '$http', function($scope, $state, $stateParams, $http) {
+	  
+    $http({url:'/api/entries/' + $stateParams.id}).then(function success(res) {
+      $scope.entry = res.data;
+      console.log($scope.entry);
+      console.log(res);
+    }, function err(data) {
+      $scope.error = data;
+    })
 
-//   $scope.createEntry = function() {
-//     Entry.save($scope.entry, function success(data) {
-//       $location.path('/');
-//     }, function error(data) {
-//       console.log(data);
-//     });
-//   }
 
-// 	$state.go('newEntry');
-// }])
 
-.controller('ViewCtrl', ['$scope', '$state', '$stateParams', function($scope, $state, $stateParams) {
-	$scope.entry = {};
+  // $scope.entry = {};
+ //  $scope.currentEntry = $scope.entry[index];
 
-	$scope.getEntry = function() {
-	  Entry.get({id: $stateParams.id}, function success(data) {
-	    $scope.entry = data;
-	  }, function error(data) {
-	    console.log(data);
-	  });
-	}
+	// $scope.getEntry = function(index) {
+ //    $http({url:'/api/entry/' + $scope.currentEntry}).then(function success(res) {
+ //      $scope.entries = res.data;
+ //      console.log(res);
+ //    }, function err(data) {
+ //      $scope.error = data;
+ //    }
+
+
+	  // Entry.get({id: $stateParams.id}, function success(data) {
+	  //   $scope.entry = data;
+	  // }, function error(data) {
+	  //   console.log(data);
+	  // });
+	// }
 
 	$state.go('viewEntry');
 }])

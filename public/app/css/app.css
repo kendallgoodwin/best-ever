@@ -135,7 +135,7 @@ form .error { color: #c55; margin: 0 10px; }
 }
 
 .well {
-    border: 15px solid black;
+    border: 1px solid black;
     /*background: ;*/
 }
 
@@ -149,6 +149,10 @@ form .error { color: #c55; margin: 0 10px; }
 }
 
 .profile-info {
+    float: none;
+}
+
+.info-all {
     float: none;
 }
 

@@ -1,14 +1,11 @@
 <div class="container">
 	<div class="col-xs-4 col-sm-7 col-md-6 col-md-offset-1">
 		<h1>All Entries</h1>
-<!-- 	<div>
-		<input type="text" class="form-control" ng-model="searchTerm" placeholder="Search...">
-	</div> -->
 
 		<div class="well" ng-repeat="entry in entries track by $index">
 		  <img src="{{entry.image}}" width="200">
 		  <div class="info">
-		  <h2 class="title">{{entry.title}}</h3>
+		  <a href="/entry/{{entry._id}}"><h2 class="title">{{entry.title}}</h3></a>
 		  <h4 class="artist">{{entry.artist}}</h4><br>
 		  <a href="/profile/{{entry.user}}"><h5 class="user">{{entry.user}}</h5></a>
 		  </div>
