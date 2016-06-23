@@ -178,7 +178,7 @@ form .error { color: #c55; margin: 0 10px; }
 
 
 
-@media (max-width: 400px) {
+@media only screen and (max-width: 400px) {
     body {
         background-image: none;
         background-color: white;
@@ -188,20 +188,20 @@ form .error { color: #c55; margin: 0 10px; }
         width: 100%;
     }
     .well {
-        /*padding-bottom: 5px;*/
+        padding: 10px;
     }
     .info {
-        float: right
-        margin-right: 200px;
+        float: right;
+        text-align: right;
     }
     img {
         width: 100px;
     }
     h2 {
-        font-size: 20px;
+        font-size: 18px;
     }
     .artist {
-        font-size: 15px;
+        font-size: 13px;
     }
     .title {
         margin-top: 0px;
@@ -219,7 +219,7 @@ form .error { color: #c55; margin: 0 10px; }
     }
 }
 
-@media (max-width: 500px) {
+@media only screen and (min-width: 401px) and (max-width: 500px) {
     body {
         background-image: none;
         background-color: white;
@@ -260,14 +260,47 @@ form .error { color: #c55; margin: 0 10px; }
     }
 }
 
-/*@media (max-width: 700px) {
-    .info {
-        float: none;
+@media only screen and (min-width: 501px) and (max-width: 700px) {
+    body {
+        background-image: none;
+        background-color: white;
+        width: 100%;
     }
     .col-sm-7 {
         width: 100%;
     }
-}*/
+    .well {
+        /*padding-bottom: 5px;*/
+    }
+    .info {
+        /*margin-right: 75px;*/
+        text-align: right;
+        margin-right: 10px;
+    }
+    img {
+        width: 150px;
+    }
+    h2 {
+        font-size: 30px;
+    }
+    .artist {
+        font-size: 20px;
+    }
+    .title {
+        margin-top: 10px;
+    }
+    .user { 
+        font-size: 15px;
+    }
+    #view-img {
+        width: 250px;
+        margin-bottom: 10px;
+    }
+    .prof-img {
+        width: 250px;
+        margin-bottom: 10px;   
+    }
+}
 
 /*@media (min-width: 900px) {
     .info {
