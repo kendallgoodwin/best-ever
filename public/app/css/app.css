@@ -149,7 +149,8 @@ form .error { color: #c55; margin: 0 10px; }
     font-size: 50px;
     color: black !important;
     margin-top: 15px;
-    font-family: 'Bangers', cursive;
+    font-family: 'Kanit', sans-serif;
+    font-weight: bold;
 }
 
 .navbar-default .navbar-nav>li>a {
@@ -193,7 +194,7 @@ form .error { color: #c55; margin: 0 10px; }
 @media only screen and (max-width: 400px) {
     body {
         background-image: none;
-        background-color: #d2dbcd;
+        background-color: white;
         width: 375px;
     }
     .col-sm-7 {
@@ -229,12 +230,16 @@ form .error { color: #c55; margin: 0 10px; }
         width: 250px;
         margin-bottom: 10px;   
     }
+    .navbar-brand {
+        font-size: 40px;
+        margin-top: 0px;
+    }
 }
 
 @media only screen and (min-width: 401px) and (max-width: 500px) {
     body {
         background-image: none;
-        background-color: #d2dbcd;
+        background-color: white;
         width: 100%;
     }
     .col-sm-7 {
@@ -270,12 +275,16 @@ form .error { color: #c55; margin: 0 10px; }
         width: 250px;
         margin-bottom: 10px;   
     }
+    .navbar-brand {
+        font-size: 40px;
+        margin-top: 0px;
+    }
 }
 
 @media only screen and (min-width: 501px) and (max-width: 600px) {
     body {
         background-image: none;
-        background-color: #d2dbcd;
+        background-color: white;
         width: 100%;
     }
     .col-sm-7 {
@@ -312,11 +321,15 @@ form .error { color: #c55; margin: 0 10px; }
         width: 250px;
         margin-bottom: 10px;   
     }
+    .navbar-brand {
+        font-size: 40px;
+        margin-top: 0px;
+    }
 }
 
 @media screen only and (min-width: 601px) and (max-width: 767px) {
     body {
-        background-color: #d2dbcd;
+        background-color: white;
         background-image: none;
         /*width: 50%;*/
     }
@@ -354,11 +367,15 @@ form .error { color: #c55; margin: 0 10px; }
         width: 250px;
         margin-bottom: 10px;   
     }
+    .navbar-brand {
+        font-size: 40px;
+        margin-top: 0px;
+    }
 }
 
 @media screen only and (min-width: 768px) and (max-width: 991px) {
     body {
-        background-color: #d2dbcd;
+        background-color: white;
         background-image: none;
 
     }
@@ -369,7 +386,7 @@ form .error { color: #c55; margin: 0 10px; }
         font-size: 16px !important;
     } 
     .navbar-default .nav-item {
-        font-size: 16px !important;
+        font-size: 10px !important;
     }
 }
 
